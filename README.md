@@ -3,11 +3,11 @@
 This is the multi-user Todo-List app where users can login and see their todo's .
 New users can register and after login they can create their todo list by adding todo's.
 Functions of this todo list app are :
-'''shell
+```shell
   User can update todo i.e. (Completed, Pending) or also can delete todo.
   The todo's will be shown according to the priority.
   Status of todo will also be shown.
-'''
+```
 
 ## Installation
 
@@ -19,6 +19,6 @@ Functions of this todo list app are :
     python manage.py runserver    
 ```
 
-##Deployment
+## Deployment
 
 Click here : https://mytodolistnew.herokuapp.com/
