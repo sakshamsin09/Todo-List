@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Contact Page {% endblock title %}
+{% block body %}
+<div  class="container pt-4">
+<h2>{{mess}}</h2>
+{% comment %} style='background-color:#A2B29F;' {% endcomment %}
+  <div class="col-lg-8 shadow mx-auto p-0" >
+    <div class="alert alert-info"><h2>Contact Us</h2>
+    </div>
+    <div style="padding:15px;">
+        <form action="/contact/" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <hr>
+        <input class="btn btn-success" type="submit" value="Submit">
+</form>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}
+    
+    

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block title %}Home Page{% endblock title %}
+
+{% block body %}
+<h4 class='mt-2'>Hello, {{request.user}}😐</h4>
+<div>
+  <div class="container pt-4">
+    <div class="row mt-4 pt-0">
+      <div class="col-lg-4 shadow mx-auto p-0 ">
+        <div class="alert alert-info">
+          <h2>Add new todo</h2>
+        </div>
+        <div class=" p-4">
+          <form action="add-todo/" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <hr>
+            <input type="submit" class="btn btn-info" value='ADD'>
+          </form>
+        </div>
+      </div>
+   
+
+    <div class="col" style="padding-left:20px;">
+      <div class="border">
+        {% if todos|length == 0 %}
+          <div class="alert alert-info text-center">
+            <p class="" style="font-size :30px;">No Todos</p>
+          </div>
+          
+        {% else %}
+      
+        <table class='table'>
+          <thead class='alert alert-info'>
+            <tr>
+              <th>SNo</th>
+              <th>Title</th>
+              <th>Status</th>
+              <th>Priority</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for todo in todos %}
+              {% if todo.status == 'C' %}
+              <tr style="background-color:#C6FFC1;">
+                
+                  <td>{{forloop.counter}}</td>
+                  <td>
+                  <del>{{todo.title}}</del>
+                </td>
+                <td title="completed">✔️</td>
+                <td>{{todo.priority}}</td>
+                <td>{{todo.date}}</td>
+                <td><a href="delete-todo/{{todo.id}}" class="" title="Delete">❌</a>
+                  {% comment %} {% if todo.status == 'P' %}
+                  <a href="update-todo/{{todo.id}}/C" class="" title="Mark-completed">✔️</a>
+                  {% else %} {% endcomment %}
+                  <a href="update-todo/{{todo.id}}/P" class="" title="Mark-pending">🕘</a>
+                  {% comment %} {% endif %} {% endcomment %}
+                </td>
+                </tr>
+                {% else %}
+                <tr style="background-color:#CAF7E3;">
+                <td>{{forloop.counter}}</td>
+                <td>{{todo.title}}</td>
+                <td title="pending">🕘</td>
+                <td>{{todo.priority}}</td>
+                <td>{{todo.date}}</td>
+                <td><a href="delete-todo/{{todo.id}}" class="" title="Delete">❌</a>
+                  {% comment %} {% if todo.status == 'P' %} {% endcomment %}
+                  <a href="update-todo/{{todo.id}}/C" class="" title="Mark-completed">✔️</a>
+                  {% comment %} {% else %}
+                  <a href="update-todo/{{todo.id}}/P" class="" title="Mark-pending">🕘</a>
+                  {% endif %} {% endcomment %}
+                </td>
+                </tr>
+                {% endif %}
+              
+              {% endfor %}
+          </tbody>
+        </table>
+        {% endif %}
+      </div>     
+    </div>
+  </div>
+  </div>
+</div>
+
+
+{% endblock body %}

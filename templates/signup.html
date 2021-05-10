@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Signup Page {% endblock title %}
+{% block body %}
+<!-- <h1>Signup page</h1> -->
+<div class="container pt-4">
+  <div class="col-lg-5 shadow mx-auto">
+    <div class="alert alert-info " style="margin-bottom:0;"><h2>CREATE ACCOUNT</h2>
+    </div>
+    <div class="p-4" style='background-color:#A2B29F;'>
+      <form method="post" action="/signup/">
+          {% csrf_token %}
+          {{form.as_p}}
+          <hr>
+          <input class="btn btn-success" type="submit" value="Create account">
+        </form>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}
+    
+    
